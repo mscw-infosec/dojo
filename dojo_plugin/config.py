@@ -104,14 +104,14 @@ for config_option in missing_errors:
         raise RuntimeError(f"Configuration Error: {config_option} must be set in the environment")
 
 def bootstrap():
-    set_config("ctf_name", "pwn.college")
-    set_config("ctf_description", "pwn.college")
+    set_config("ctf_name", "infosec.moscow")
+    set_config("ctf_description", "infosec.moscow")
     set_config("user_mode", "users")
 
-    set_config("challenge_visibility", "public")
-    set_config("registration_visibility", "public")
-    set_config("score_visibility", "public")
-    set_config("account_visibility", "public")
+    set_config("challenge_visibility", "private")
+    set_config("registration_visibility", "private")
+    set_config("score_visibility", "private")
+    set_config("account_visibility", "private")
 
     set_config("ctf_theme", "dojo_theme")
 
