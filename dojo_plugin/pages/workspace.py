@@ -27,7 +27,7 @@ def view_workspace():
 
     current_challenge = get_current_dojo_challenge()
     if not current_challenge:
-        return render_template("error.html", error="No active challenge session; start a challenge!")
+        return render_template("error.html", error="Нет активной задачи; запустите задачу!")
 
     practice = get_current_container().labels.get("dojo.mode") == "privileged"
 

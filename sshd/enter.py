@@ -68,7 +68,7 @@ def main():
     try:
         container = docker_client.containers.get(container_name)
     except docker.errors.NotFound:
-        print("No active challenge session; start a challenge!")
+        print("Нет активной задачи; запустите задачу!")
         exit(1)
 
     attempts = 0

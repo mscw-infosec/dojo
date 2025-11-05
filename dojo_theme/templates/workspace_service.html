@@ -54,7 +54,7 @@
             document.getElementById("workspace_iframe").classList.remove("d-none");
         }
         else {
-            document.querySelector("h1").innerText = "No active challenge session; start a challenge!";
+            document.querySelector("h1").innerText = "Нет активной задачи; запустите задачу!";
         }
     }).catch(error => {
         document.querySelector("h1").innerText= `Error while retrieving IFrame Url: ${error}`;
