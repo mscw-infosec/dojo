@@ -7,14 +7,14 @@
     </div>
 </div>
 <div class="container">
-    <h2>Active Challenges</h2>
+    <h2>Активные задачи</h2>
     {% if actives %}
     <table class="table">
         <thead>
             <tr>
-                <th>User</th>
-                <th>Challenge</th>
-                <th>Uptime</th>
+                <th>Пользователь</th>
+                <th>Задача</th>
+                <th>Аптайм</th>
             </tr>
         </thead>
         <tbody>
@@ -22,13 +22,13 @@
             <tr>
                 <td><a href="{{ generate_account_url(active.user.id, admin=True) }}">{{ active.user.name }}</a></td>
                 <td>{{ active.challenge.module.name }} - {{ active.challenge.name}}</td>
-                <td>{{ active.uptime.days }}d {{ active.uptime.seconds // 3600 }}h {{ (active.uptime.seconds // 60) % 60 }}m</td>
+                <td>{{ active.uptime.days }}d {{ active.uptime.seconds // 3600 }}ч {{ (active.uptime.seconds // 60) % 60 }}м</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     {% else %}
-    <p>No active challenges at the moment.</p>
+    <p>Сейчас нет активных задач.</p>
     {% endif %}
 </div>
 {% endblock %}

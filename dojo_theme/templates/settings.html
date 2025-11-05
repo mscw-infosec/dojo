@@ -3,20 +3,17 @@
 {% block content %}
 <div class="jumbotron">
   <div class="container">
-    <h1>User Settings</h1>
+    <h1>Настройки</h1>
   </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-2 offset-md-1">
       <div class="nav flex-column nav-pills" role="tablist">
-        <a class="nav-link active" id="settings-profile-tab" data-toggle="pill" href="#profile" role="tab">Profile</a>
-        <a class="nav-link" id="settings-ssh-key-tab" data-toggle="pill" href="#ssh-key" role="tab">SSH Key</a>
-        {% if discord_enabled %}
-        <a class="nav-link" id="settings-discord-tab" data-toggle="pill" href="#discord" role="tab">Discord</a>
-        {% endif %}
-	      <a class="nav-link" id="settings-tokens-tab" data-toggle="pill" href="#tokens" role="tab">Access Tokens</a>
-        <a class="nav-link" id="settings-reset-home-tab" data-toggle="pill" href="#reset-home" role="tab">Reset Home</a>
+        <a class="nav-link active" id="settings-profile-tab" data-toggle="pill" href="#profile" role="tab">Профиль</a>
+        <a class="nav-link" id="settings-ssh-key-tab" data-toggle="pill" href="#ssh-key" role="tab">SSH-ключ</a>
+	      <a class="nav-link" id="settings-tokens-tab" data-toggle="pill" href="#tokens" role="tab">Токены доступа</a>
+        <a class="nav-link" id="settings-reset-home-tab" data-toggle="pill" href="#reset-home" role="tab">Сброс данных</a>
       </div>
     </div>
     <div class="col-md-8">
@@ -86,7 +83,7 @@
         <div class="tab-pane fade" id="ssh-key" role="tabpanel">
 
           {% if ssh_keys %}
-            <b><label for="enter-name">Current SSH Keys</label></b>
+            <b><label for="enter-name">Текущие SSH-ключи</label></b>
             <br>
 
             {% for key in ssh_keys %}
@@ -117,8 +114,8 @@
 
           <form method="post" id="ssh-key-form" autocomplete="off">
             <div class="form-group">
-              <b><label for="enter-name">Add New SSH Key</label></b>
-              <small class="form-text text-muted">Required for accessing challenges over SSH</small>
+              <b><label for="enter-name">Добавить новый ключ</label></b>
+              <small class="form-text text-muted">Необходимо для подключения к задаче по SSH</small>
               <br>
               <input class="form-control" id="ssh-key" name="ssh_key" type="text" value="">
             </div>
@@ -129,33 +126,11 @@
             <div class="form-group text-right">
               <input class="btn btn-md btn-primary btn-outlined" id="_submit" name="_submit" type="submit" value="Add">
             </div>
-          </form><b><label for="ssh-key-create">How To Create a SSH Key</label></b>
-          <p id="ssh-key-create">You can quickly generate an ssh key by running <code>ssh-keygen -f key -N ''</code> in a terminal on your (unix-friendly) host machine.
-          This will generate files <code>key</code> and <code>key.pub</code>, which are your private and public keys respectively.
-          Once you have linked your <em>public</em> ssh key to your account, you can connect to the dojo over ssh with <code>ssh -i key hacker@dojo.pwn.college</code>.</p>
+          </form><b><label for="ssh-key-create">Как создать SSH-ключ</label></b>
+          <p id="ssh-key-create">Вы можете быстро создать SSH-ключ, выполнив команду <code>ssh-keygen -f key -N ''</code> в терминале на вашем ПК или ВМ с UNIX-подобной ВМ.
+          Эта команда сгенерирует файлы <code>key</code> и <code>key.pub</code>, которые являются вашим приватным и публичным ключом соответственно.
+          Как только вы привяжете ваш <em>публичный</em> ssh-ключ к вашему аккаунту, вы сможете подключиться к задаче, используя команду <code>ssh -i key hacker@tasks.ctfd.infosec.moscow</code>.</p>
         </div>
-
-        {% if discord_enabled %}
-        <div class="tab-pane fade" id="discord" role="tabpanel">
-          <div class="text-center">
-            <img src="{{ discord_avatar_asset(discord_member) }}" class="discord-avatar">
-            {% if discord_member %}
-              <h2>{{ discord_member["user"]["username"] }}</h2>
-              <br>
-              <form method="post" id="discord-form" autocomplete="off">
-                <div class="form-group">
-                  <input type="submit" class="btn btn-danger" value="Disconnect Discord Account">
-                </div>
-                <div id="discord-results" class="form-group">
-                </div>
-              </form>
-            {% else %}
-              <br>
-              <a href="/discord/connect" class="btn btn-primary">Connect Discord Account</a>
-            {% endif %}
-          </div>
-        </div>
-        {% endif %}
 
         <div class="tab-pane fade" id="tokens" role="tabpanel">
           {% with form = Forms.self.TokensForm() %}
@@ -173,13 +148,13 @@
 
           {% if tokens %}
           <hr>
-          <h4 class="text-center">Active Tokens</h4>
+          <h4 class="text-center">Активные токены</h4>
           <table class="table table-striped">
             <thead>
               <tr>
-                <td class="text-center"><b>Created</b></td>
-                <td class="text-center"><b>Expiration</b></td>
-                <td class="text-center"><b>Delete</b></td>
+                <td class="text-center"><b>Создан</b></td>
+                <td class="text-center"><b>Истекает</b></td>
+                <td class="text-center"><b>Удалить</b></td>
               </tr>
             </thead>
             <tbody>
@@ -201,9 +176,9 @@
 
         <div class="tab-pane fade" id="reset-home" role="tabpanel">
           <div class="text-center">
-            <h2>Reset Home Directory</h2>
-            <p>Click the button below to reset your home directory. This will zip your current home directory and wipe everything else.</p>
-            <button id="reset-home-button" class="btn btn-danger">Reset Home Directory</button>
+            <h2>Сброс домашней директории</h2>
+            <p>Нажмите на кнопку ниже, чтобы очистить вашу домашнюю директорию. Очистка создаст бэкап директории, после чего удалит её. Бэкап будет доступен в <code>/home/hacker</code></p>
+            <button id="reset-home-button" class="btn btn-danger">Сбросить</button>
           </div>
           <br>
           <div id="reset-home-results" class="form-group"></div>

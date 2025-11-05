@@ -30,20 +30,20 @@
 {% block content %}
 <div class="jumbotron">
   <div class="container">
-    <h1>Course</h1>
+    <h1>Курс</h1>
   </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-md-2 offset-md-1">
       <div class="nav flex-column nav-pills" role="tablist">
-        <a class="nav-link active" id="course-syllabus-tab" data-toggle="pill" href="#syllabus" role="tab">Syllabus</a>
+        <a class="nav-link active" id="course-syllabus-tab" data-toggle="pill" href="#syllabus" role="tab">Программа</a>
         {% if user %}
           {% if dojo.course.scripts and dojo.course.scripts.grade %}
-          <a class="nav-link" id="course-grades-tab" data-toggle="pill" href="#grades" role="tab">Grades</a>
+          <a class="nav-link" id="course-grades-tab" data-toggle="pill" href="#grades" role="tab">Оценки</a>
           {% endif %}
-          <a class="nav-link" id="course-identity-tab" data-toggle="pill" href="#identity" role="tab">Identity</a>
-          <a class="nav-link" id="course-setup-tab" data-toggle="pill" href="#setup" role="tab">Setup</a>
+          <a class="nav-link" id="course-identity-tab" data-toggle="pill" href="#identity" role="tab">Идентификация</a>
+          <a class="nav-link" id="course-setup-tab" data-toggle="pill" href="#setup" role="tab">Настройка</a>
         {% endif %}
       </div>
     </div>
@@ -58,7 +58,7 @@
         {% if user %}
           {% if dojo.course.scripts and dojo.course.scripts.grade %}
           <div class="tab-pane fade show" id="grades" role="tabpanel">
-            <p>Loading...</p>
+            <p>Загрузка...</p>
           </div>
           {% endif %}
 
@@ -66,7 +66,7 @@
             <form method="post" id="identity-form" autocomplete="off">
               <div class="form-group">
                 <b><label for="enter-name">{{ identity.name }}</label></b>
-                <small class="form-text text-muted">This will be shared with the admins of this dojo.</small>
+                <small class="form-text text-muted">Эти данные будут показаны администраторам курса.</small>
                 <br>
                 <input class="form-control" id="identity" name="identity" type="text" value="{{ identity.value or '' }}">
               </div>
@@ -82,21 +82,13 @@
         {% endif %}
         <div class="tab-pane fade" id="setup" role="tabpanel">
           <ol>
-            <li class="setup-{{ setup.create_account }}">Create a pwn.college account <a href="/register">here</a>. You can use an existing account, or create a new one specifically for the course. The username <strong>will be visible publicly</strong>: if you want to be anonymous, do not use your real name.</li>
-            {% if discord_role %}
-              <li class="setup-{{ setup.create_discord }}">Create a Discord account <a href="https://discord.com/register">here</a>. You can use an existing account, or create a new one specifically for the course.</li>
-              <li class="setup-{{ setup.join_discord }}">Join the pwn.college Discord server <a href="https://discord.gg/pwncollege">here</a>. This is where you will be able to discuss the challenges with your peers and see official course announcements.</li>
-              <li class="setup-{{ setup.link_discord }}">Link your pwn.college account with your Discord <a href="/settings#discord">here</a>. As a verified student, you will receive an official course role in Discord for viewing course announcements.</li>
-            {% endif %}
-            <li class="setup-{{ setup.link_student }}">Link your pwn.college account with your {{ identity.name }} <a href="identity">here</a>. This is how we will be able to give you your official course grade, and how we will be able to verify your student status for an official course role in Discord.</li>
+            <li class="setup-{{ setup.create_account }}">Создать аккаунт можно <a href="/register">здесь</a>. Ваше имя пользователя <strong>будет видно всем</strong>: если вы хотите зарегистрироваться анонимно, не используйте своё настоящее имя.</li>
+            <li class="setup-{{ setup.link_student }}">Свяжите свой аккаунт с {{ identity.name }} <a href="identity">здесь</a>. Так мы сможем отслеживать вашу успеваемость и понимать связь между вашим аккаунтом в {{ identity.name }} и аккаунтом на CTFd.</li>
           </ol>
           {% if setup_complete %}
-            <p>Setup complete!</p>
-            {% if discord_role %}
-              <p>If you are missing your official course role in Discord, you can force it to update by updating your course identity <a href="identity">here</a>.</p>
-            {% endif %}
+            <p>Настройка завершена!</p>
           {% else %}
-            <p>Setup incomplete.</p>
+            <p>Настройка не завершена.</p>
           {% endif %}
           <p></p>
         </div>

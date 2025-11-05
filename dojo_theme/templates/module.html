@@ -80,7 +80,7 @@
     {% if assessments %}
     <br>
     {% for assessment in assessments %}
-    <h3 class="module-due-date" title="{{ assessment.date }}">{{ assessment.name }} in {{ assessment.until }}</h3>
+    <h3 class="module-due-date" title="{{ assessment.date }}">{{ assessment.name }} до {{ assessment.until }}</h3>
     {% endfor %}
     {% endif %}
   </div>
@@ -89,14 +89,6 @@
 
   {% if module.description %}
   <div>
-    {% if module_description_edit_url %}
-      <a href="{{ module_description_edit_url }}"
-         target="_blank"
-         class="github-edit-link"
-         title="Edit on GitHub">
-        <i class="fas fa-edit"></i>
-      </a>
-    {% endif %}
     {{ module.description | markdown }}
   </div>
   <br>
@@ -147,14 +139,6 @@
 
             {% elif resource.type == "markdown" %}
             <div class="embed-responsive">
-              {% if resource_description_edit_urls.get(resource.resource_index) %}
-                <a href="{{ resource_description_edit_urls[resource.resource_index] }}"
-                   target="_blank"
-                   class="github-edit-link"
-                   title="Edit on GitHub">
-                  <i class="fas fa-edit"></i>
-                </a>
-              {% endif %}
               {{ resource.content | markdown }}
             </div>
             {% endif %}
@@ -189,7 +173,7 @@
                 {% if lock_challenge %}
                 <div class="challenge-text-wrapper">
                   <span class="challenge-name-text">{{ challenge.name or challenge.id }}</span>
-                  <span class="challenge-locked-text">Solve <strong></string><span style="color: white">{{ previous_challenge.name or previous_challenge.id }}</span></strong> to unlock this challenge</span>
+                  <span class="challenge-locked-text">Решите <strong></string><span style="color: white">{{ previous_challenge.name or previous_challenge.id }}</span></strong>, чтобы разблокировать эту задачу</span>
                   <span class="invisible-placeholder pr-2">{{ challenge.name or challenge.id }}</span>
                 </div>
                 {% else %}
@@ -209,40 +193,32 @@
             <span class="challenge-header-right">
               {% if challenge_container_counts.get(challenge.id, 0) > 0 %}
               <span class="total-hackers">
-                {{ challenge_container_counts.get(challenge.id, 0) }} hacking,
+                {{ challenge_container_counts.get(challenge.id, 0) }} решает сейчас,
               </span>
               {% endif %}
               <span class="total-solves">
-                {{ total_solves.get(challenge.challenge_id, 0) }} solves
+                {{ total_solves.get(challenge.challenge_id, 0) }} решений
               </span>
             </span>
           {% else %}
             <div class="embed-responsive challenge-description">
               {% if lock_challenge %}
-                <p><em>This challenge is locked</em></p>
+                <p><em>Эта задача заблокирована</em></p>
               {% else %}
-                {% if not challenge.required %}<small>This challenge is optional, it will not count towards dojo completion.</small><br><br>{% endif %}
-                {% if challenge_description_edit_urls.get(challenge.id) %}
-                  <a href="{{ challenge_description_edit_urls[challenge.id] }}"
-                     target="_blank"
-                     class="github-edit-link"
-                     title="Edit on GitHub">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                {% endif %}
+                {% if not challenge.required %}<small>Эта задача - необязательная, она не учитывается в проценте выполнения.</small><br><br>{% endif %}
                 {{ challenge.description | markdown }}
               {% endif %}
             </div>
             <div class="challenge-init row{% if active %} challenge-hidden{% endif %}">
               <div class="col-md-3 form=group text-center">
                 <button id="challenge-start" type="submit" class="btn btn-md btn-outline-secondary challenge-init">
-                  <i class="fas fa-play fa-lg"></i>Start
+                  <i class="fas fa-play fa-lg"></i>Запустить задачу
                 </button>
               </div>
               {% if challenge.allow_privileged %}
               <div class="col-md-3 form=group text-center">
                 <button id="challenge-priv" type="submit" class="btn btn-md btn-outline-secondary challenge-init">
-                  <i class="fas fa-unlock fa-lg"></i>Privileged
+                  <i class="fas fa-unlock fa-lg"></i>Запустить с повышенными правами
                 </button>
               </div>
               {% endif %}
@@ -260,8 +236,8 @@
                 {% endif %}
               </div>
               <div class="workspace-ssh">
-                <h3>Connect with SSH</h3>
-                Link your <a href="/settings#ssh-key" target="_blank">SSH key</a>, then connect with: <code>ssh hacker@dojo.pwn.college</code>
+                <h3>Подключиться по SSH</h3>
+                Привяжите свой <a href="/settings#ssh-key" target="_blank">SSH-ключ</a>, затем подключитесь: <code>ssh hacker@tasks.ctfd.infosec.moscow</code>
               </div>
               {% include "components/actionbar.html" %}
             </div>
@@ -292,8 +268,7 @@
 
   {% if visible_challenges and module.show_scoreboard %}
 
-  <h2 class="row" id="scoreboard-heading">30-Day Scoreboard:</h2>
-  <p>This scoreboard reflects solves for challenges in this module after the module launched in this dojo.</p>
+  <h2 class="row" id="scoreboard-heading">30-дневный скорборд:</h2>
   {% from "macros/scoreboard.html" import scoreboard %}
   {{ scoreboard() }}
 

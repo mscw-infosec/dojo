@@ -31,7 +31,7 @@
 {% block content %}
 <div class="jumbotron">
   <div class="container">
-    <h1>{{ dojo.name }} User Info for {{ user.name }}</h1>
+    <h1>{{ dojo.name }} Информация о {{ user.name }}</h1>
   </div>
 </div>
 <div class="container">
@@ -39,16 +39,10 @@
     <div class="col-md-8 offset-md-1">
       <ul>
         <li>
-          pwn.college User Name: {{ user.name }}
+          Юзернейм CTFd: {{ user.name }}
         </li>
         <li>
           {{ identity_name }} : {{ identity_value }}
-        </li>
-        <li>
-          {% if discord_member %}
-            Authorized and linked Discord Username: {{ discord_member.user.username }} <br>
-            Discord ID (unique): {{ discord_member.user.id }}
-          {% endif %}
         </li>
       </ul>
     </div>
