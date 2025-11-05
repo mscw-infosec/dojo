@@ -33,7 +33,7 @@
       <figure>
         <a class="text-decoration-none" href="{{ url_for('pwncollege_dojo.view_dojo_admin', dojo=dojo.reference_id) }}">
           <i class="fas fa-users-cog fa-3x"></i>
-          <figcaption><b>Админ</b></figcaption>
+          <figcaption><b>Администрирование</b></figcaption>
         </a>
       </figure>
     </div>
@@ -43,7 +43,7 @@
   <br>
 
   {% if dojo.award and dojo.award.get("emoji") %}
-  <h2 class="row">Награда: <b>{{ dojo.award["emoji"] }}</b></h2>
+  <h2 class="row">Награда: <b> {{ dojo.award["emoji"] }}</b></h2>
   <br>
   {% endif %}
 

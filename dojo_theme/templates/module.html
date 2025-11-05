@@ -212,17 +212,17 @@
             <div class="challenge-init row{% if active %} challenge-hidden{% endif %}">
               <div class="col-md-3 form=group text-center">
                 <button id="challenge-start" type="submit" class="btn btn-md btn-outline-secondary challenge-init">
-                  <i class="fas fa-play fa-lg"></i>Запустить задачу
+                  <i class="fas fa-play fa-lg"></i>Запустить
                 </button>
               </div>
               {% if challenge.allow_privileged %}
-              <div class="col-md-3 form=group text-center">
+              <div class="col-md-6 form=group text-center">
                 <button id="challenge-priv" type="submit" class="btn btn-md btn-outline-secondary challenge-init">
                   <i class="fas fa-unlock fa-lg"></i>Запустить с повышенными правами
                 </button>
               </div>
               {% endif %}
-              <div class="col-md-{% if challenge.allow_privileged %}6{% else %}9{% endif %}">
+              <div class="col-md-{% if challenge.allow_privileged %}3{% else %}9{% endif %}">
                 <input id="module" type="hidden" value="{{ module.id }}">
                 <input id="challenge" type="hidden" value="{{ challenge.id }}">
                 <input id="challenge-id" type="hidden" value="{{ challenge.challenge_id }}">

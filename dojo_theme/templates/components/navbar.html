@@ -16,11 +16,9 @@
     <div class="collapse navbar-collapse" id="base-navbars">
       <div class="d-none d-md-block" style="border-left: 2px solid white; height: 20px; margin: 0 20px;"></div>
       <ul class="navbar-nav mr-auto">
-        {{ navitem("Dojos", url_for("pwncollege_dojos.listing"), "fa-torii-gate") }}
-        {{ navitem("Workspace", url_for("pwncollege_workspace.view_workspace"), "fa-desktop") }}
-        {{ navitem("Help", url_for("pwncollege_sensai.view_sensai"), "fa-question", new=True) }}
-        {{ navitem("Chat", "https://discord.gg/pwncollege", "fa-comments", new=True) }}
-        {{ navitem("Search", "#", "fa-search") }}
+        {{ navitem("Курсы", url_for("pwncollege_dojos.listing"), "fa-torii-gate") }}
+        {{ navitem("Рабочий стол", url_for("pwncollege_workspace.view_workspace"), "fa-desktop") }}
+        {{ navitem("Поиск", "#", "fa-search") }}
       </ul>
       <hr class="d-sm-flex d-md-flex d-lg-none">
       <ul class="navbar-nav ml-md-auto d-block d-sm-flex d-md-flex">
@@ -28,16 +26,16 @@
         {% if is_admin() %}
           {{ navitem("Admin Panel", url_for("admin.view"), "fa-wrench", shrink=True) }}
         {% endif %}
-        {{ navitem("Profile", url_for("pwncollege_users.view_self"), "fa-user-circle", shrink=True) }}
-        {{ navitem("Settings", url_for("views.settings"), "fa-cogs", shrink=True) }}
-        {{ navitem("Logout", url_for("auth.logout"), "fa-sign-out-alt", shrink=True) }}
+        {{ navitem("Профиль", url_for("pwncollege_users.view_self"), "fa-user-circle", shrink=True) }}
+        {{ navitem("Настройки", url_for("views.settings"), "fa-cogs", shrink=True) }}
+        {{ navitem("Выйти", url_for("auth.logout"), "fa-sign-out-alt", shrink=True) }}
 
         {% else %}
         {% if registration_visible() %}
-        {{ navitem("Register", url_for("auth.register"), "fa-user-plus") }}
+        {{ navitem("Рег-я", url_for("auth.register"), "fa-user-plus") }}
         {% endif %}
 
-        {{ navitem("Login", url_for("auth.login", next=request.full_path), "fa-sign-in-alt") }}
+        {{ navitem("Вход", url_for("auth.login", next=request.full_path), "fa-sign-in-alt") }}
         {% endif %}
 
         <li class="nav-item">
@@ -47,7 +45,7 @@
             </span>
             <span class="d-sm-block d-md-none d-lg-block text-nowrap">
               <i class="fas fa-caret-up pr-1"></i>
-              <span class="d-lg-none">Hide Navbar</span>
+              <span class="d-lg-none">Спрятать навигацию</span>
             </span>
           </a>
         </li>

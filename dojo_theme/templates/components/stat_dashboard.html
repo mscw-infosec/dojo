@@ -14,25 +14,25 @@
 
 <div id="stats-dashboard" class="stats-dashboard">
   <div class="stat-card">
-    <div class="stat-card-header">Dojo Stats</div>
+    <div class="stat-card-header">Статистика</div>
     <div class="stat-container">
       <div class="stat-box">
-        <div class="stat-label">Total Solves</div>
+        <div class="stat-label">Всего решений</div>
         <div class="stat-value">{{ render_stat_value(stats, "solves", show_neutral=False) }}</div>
       </div>
 
       <div class="stat-box">
-        <div class="stat-label">Hacking Now</div>
+        <div class="stat-label">Решают сейчас</div>
         <div class="stat-value">{{ render_stat_value(stats, "active", show_neutral=False) }}</div>
       </div>
 
       <div class="stat-box">
-        <div class="stat-label">Unique Hackers</div>
+        <div class="stat-label">Всего человек</div>
         <div class="stat-value">{{ render_stat_value(stats, "users", show_neutral=False) }}</div>
       </div>
 
       <div class="stat-box">
-        <div class="stat-label">Challenges</div>
+        <div class="stat-label">Задач</div>
         <div class="stat-value">{{ render_stat_value(stats, "challenges", show_neutral=False) }}</div>
       </div>
     </div>
@@ -50,7 +50,7 @@
   </div> -->
 
   <div class="stat-card">
-    <div class="stat-card-header">Recent Awardees</div>
+    <div class="stat-card-header">Недавно решившие</div>
     <div class="recent-awards">
       {% if awards %}
         {% for award in awards[:3] %}
@@ -59,12 +59,12 @@
             {{ award.user.name }}
           </a>
           <div class="recent-time">
-              {{ award.date.strftime('%m/%d/%y %I:%M %p') if award.date else 'Unknown time' }}
+              {{ award.date.strftime('%d.%m.%y %H:%M') if award.date else 'Unknown time' }}
           </div>
         </div>
         {% endfor %}
       {% else %}
-        <div class="recent-item">No awards yet</div>
+        <div class="recent-item">Наград за курс ещё нет :(</div>
       {% endif %}
     </div>
   </div>

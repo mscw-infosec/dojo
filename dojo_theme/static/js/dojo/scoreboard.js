@@ -19,15 +19,15 @@ function loadScoreboard(duration, page) {
     $("#scoreboard-control-all").removeClass("scoreboard-page-selected");
     if (duration == 7) {
         $("#scoreboard-control-week").addClass("scoreboard-page-selected");
-        $("#scoreboard-heading").text("7-Day Scoreboard:");
+        $("#scoreboard-heading").text("7-дневный скорборд:");
     }
     if (duration == 30) {
         $("#scoreboard-control-month").addClass("scoreboard-page-selected");
-        $("#scoreboard-heading").text("30-Day Scoreboard:");
+        $("#scoreboard-heading").text("30-дневный скорборд:");
     }
     if (duration == 0) {
         $("#scoreboard-control-all").addClass("scoreboard-page-selected");
-        $("#scoreboard-heading").text("All-Time Scoreboard:");
+        $("#scoreboard-heading").text("Общий скорборд:");
     }
 
     CTFd.fetch(endpoint, {
